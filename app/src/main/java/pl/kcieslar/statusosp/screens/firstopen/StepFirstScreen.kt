@@ -74,7 +74,7 @@ fun StepFirstScreen() {
             )
             Spacer(modifier = Modifier.height(10.dp))
             PrimaryButton(text = "PRZEJDŹ DALEJ") {
-                Toast.makeText(context, "Hello $text!", Toast.LENGTH_SHORT).show()
+                // TODO: Verify username field and send user to StepSecondScreen + save to Firebase
             }
         }
     }

@@ -21,12 +21,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -79,22 +81,23 @@ fun StepThirdScreen() {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 PrimaryButton(modifier = Modifier.weight(1.2f), text = "Dołącz do grupy") {
-                    Toast.makeText(context, "Dołącz do grupy", Toast.LENGTH_SHORT).show()
+                    // TODO: Start connect user to group
                 }
                 Text(text = "lub", textAlign = TextAlign.Center, modifier = Modifier.weight(0.3f))
                 SecondaryButton(modifier = Modifier.weight(0.8f), text = "Stwórz nową") {
-                    Toast.makeText(context, "Zakładam nową", Toast.LENGTH_SHORT).show()
+                    // TODO: Send user to create new group screen
                 }
             }
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun EnterGroupCodeFields() {
-    var textCode = remember { mutableStateListOf("", "", "", "", "", "") }
+    val textCode = remember { mutableStateListOf("", "", "", "", "", "") }
     val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -115,14 +118,17 @@ fun EnterGroupCodeFields() {
                         textColor = Color.Transparent,
                         cursorColor = Color.Transparent
                     ),
-                    onValueChange = {
-                        if (it.isEmpty() || it.matches(Regex("^\\d+\$"))) {
-                            Log.d("asdasdasd", "onValueChange: $it")
-                            val newValue = it.replace(textCode[index], "")
+                    onValueChange = { value ->
+                        if (value.isEmpty() || value.matches(Regex("^\\d+\$"))) {
+                            val newValue = value.replace(textCode[index], "")
                             textCode[index] = newValue
-                            focusManager.moveFocus(
-                                focusDirection = FocusDirection.Next,
-                            )
+                            if (textCode.any { it.isEmpty() }) {
+                                focusManager.moveFocus(focusDirection = FocusDirection.Next)
+                            } else {
+                                keyboardController?.hide()
+                                focusManager.clearFocus()
+                                // TODO: Connect user to specified group
+                            }
                         }
                     },
                     keyboardOptions = KeyboardOptions(

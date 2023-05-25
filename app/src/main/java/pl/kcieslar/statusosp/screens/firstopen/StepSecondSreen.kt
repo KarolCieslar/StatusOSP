@@ -59,10 +59,10 @@ fun StepSecondScreen() {
             horizontalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             SecondaryButton(modifier = Modifier.weight(1f), text = "Nie, nie chcę tego") {
-                Toast.makeText(context, "Nie zgadzam się!", Toast.LENGTH_SHORT).show()
+                // TODO: Send user to StepThirdScreen and set notification to false
             }
             PrimaryButton(modifier = Modifier.weight(1f), text = "Zgadzam się") {
-                Toast.makeText(context, "Zgadzam się!", Toast.LENGTH_SHORT).show()
+                // TODO: Send user to StepThirdScreen and set notification to true
             }
         }
     }
