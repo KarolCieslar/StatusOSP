@@ -3,12 +3,6 @@ package pl.kcieslar.statusosp.screens.firstopen
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.Interaction
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,8 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalTextStyle
@@ -26,21 +18,15 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -48,8 +34,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 import pl.kcieslar.statusosp.views.PrimaryButton
@@ -68,16 +52,21 @@ fun StepThirdScreen() {
     ) {
         StepView(2)
         Column {
-            Row(horizontalArrangement = Arrangement.Center) {
-                Text(
-                    modifier = Modifier.weight(1f),
-                    text = "Zanim przejdziemy dalej musisz się przedstawić. Wpisana przez Ciebie nazwa będzie wyświetlana na listach jednostek do której dołączysz\n\nSwoją nazwę będziesz mógł zmienić w każdej chwili w ustawieniach aplikacji."
-                )
+            Row(
+                modifier = Modifier.padding(horizontal = 5.dp),
+                horizontalArrangement = Arrangement.spacedBy(26.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Image(
                     modifier = Modifier.weight(0.6f),
-                    painter = painterResource(id = R.drawable.image),
+                    painter = painterResource(id = R.drawable.fireman_ladder),
                     contentDescription = "Strażak",
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.Fit
+                )
+                Text(
+                    modifier = Modifier.weight(1f),
+                    fontSize = 14.sp,
+                    text = "Jeśli Twoja jednostka została już utworzona poproś jej administratora o podanie kodu a następnie dołącz do niej!\n\nMożesz również stworzyć nową grupę dla Twojej jednostki. Będziesz wtedy jej administratorem, który może zarządzać listą członków oraz modyfikować ustawienia grupy."
                 )
             }
         }
@@ -85,12 +74,17 @@ fun StepThirdScreen() {
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             EnterGroupCodeFields()
-            PrimaryButton(text = "Dołącz do grupy") {
-                Toast.makeText(context, "Dołącz do grupy", Toast.LENGTH_SHORT).show()
-            }
-            Text(text = "lub", textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
-            SecondaryButton(text = "Stwórz nową grupę") {
-                Toast.makeText(context, "Zakładam nową grupę", Toast.LENGTH_SHORT).show()
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                PrimaryButton(modifier = Modifier.weight(1.2f), text = "Dołącz do grupy") {
+                    Toast.makeText(context, "Dołącz do grupy", Toast.LENGTH_SHORT).show()
+                }
+                Text(text = "lub", textAlign = TextAlign.Center, modifier = Modifier.weight(0.3f))
+                SecondaryButton(modifier = Modifier.weight(0.8f), text = "Stwórz nową") {
+                    Toast.makeText(context, "Zakładam nową", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -99,7 +93,7 @@ fun StepThirdScreen() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EnterGroupCodeFields() {
-    var textCode = remember { mutableStateListOf("2", "1", "", "", "", "") }
+    var textCode = remember { mutableStateListOf("", "", "", "", "", "") }
     val focusManager = LocalFocusManager.current
 
     Row(
@@ -149,7 +143,7 @@ fun EnterGroupCodeFields() {
 
 @Preview(showBackground = true)
 @Composable
-fun FirstOpenStepThirdScreenPreview() {
+fun StepThirdScreenPreview() {
     StatusOSPTheme {
         StepThirdScreen()
     }

@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Divider
@@ -72,7 +71,7 @@ fun OneStepView(
     ) {
         Box(
             modifier = Modifier
-                .size(35.dp)
+                .size(25.dp)
                 .align(Alignment.CenterHorizontally)
                 .border(
                     shape = CircleShape,
@@ -85,7 +84,7 @@ fun OneStepView(
             Text(
                 modifier = Modifier.align(Alignment.Center),
                 text = stepText,
-                fontSize = 18.sp,
+                fontSize = 15.sp,
                 color = if (isSelected) Color.White else Color.Black,
                 fontWeight = FontWeight.Bold
             )
@@ -105,7 +104,7 @@ fun OneStepView(
 @Composable
 fun CustomDivider(modifier: Modifier, isSelected: Boolean) {
     Divider(
-        modifier = modifier.padding(top = 17.dp),
+        modifier = modifier.padding(top = 13.dp),
         color = if (isSelected) PrimaryRed else Color.Black,
         thickness = 1.dp
     )

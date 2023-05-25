@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import pl.kcieslar.statusosp.screens.firstopen.StepOneScreen
+import pl.kcieslar.statusosp.screens.firstopen.StepFirstScreen
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
 
             StatusOSPTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    StepOneScreen()
+                    StepFirstScreen()
                 }
             }
         }
