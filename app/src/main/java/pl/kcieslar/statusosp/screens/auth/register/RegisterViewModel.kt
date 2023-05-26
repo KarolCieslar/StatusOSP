@@ -2,6 +2,8 @@ package pl.kcieslar.statusosp.screens.auth.register
 
 import androidx.compose.runtime.mutableStateOf
 import dagger.hilt.android.lifecycle.HiltViewModel
+import pl.kcieslar.statusosp.EMAIL_VALUE
+import pl.kcieslar.statusosp.LOGIN_SCREEN
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.REGISTER_SCREEN
 import pl.kcieslar.statusosp.STEP_FIRST_SCREEN
@@ -65,8 +67,8 @@ class RegisterViewModel @Inject constructor(
         }) {
             changeCallProcessStatus(true)
             accountService.register(email, password)
-            accountService.login(email, password)
-            openAndPopUp(STEP_FIRST_SCREEN, REGISTER_SCREEN)
+            SnackbarManager.showMessage(R.string.register_screen_successfully_register)
+            openAndPopUp("$LOGIN_SCREEN?$EMAIL_VALUE=$email", REGISTER_SCREEN)
         }
     }
 }

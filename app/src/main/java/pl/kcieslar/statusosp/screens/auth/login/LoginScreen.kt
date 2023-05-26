@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,7 +23,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.RECOVERY_PASSWORD_SCREEN
 import pl.kcieslar.statusosp.REGISTER_SCREEN
-import pl.kcieslar.statusosp.STEP_FIRST_SCREEN
 import pl.kcieslar.statusosp.common.compose.EmailTextField
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 import pl.kcieslar.statusosp.common.compose.PasswordTextField
@@ -32,10 +32,16 @@ import pl.kcieslar.statusosp.common.compose.PrimaryButton
 fun LoginScreen(
     openAndPopUp: (String, String) -> Unit,
     openScreen: (String) -> Unit = {},
+    emailValue: String = "",
     modifier: Modifier = Modifier,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState
+    if (emailValue.isNotEmpty()) {
+        LaunchedEffect(Unit) {
+            viewModel.onEmailChange(emailValue)
+        }
+    }
 
     Column(
         modifier = Modifier

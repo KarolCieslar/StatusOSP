@@ -42,6 +42,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
@@ -126,10 +127,14 @@ fun resources(): Resources {
 fun NavGraphBuilder.statusOspNavGraph(appState: StatusOSPAppState) {
 
     // Auth screens
-    composable(LOGIN_SCREEN) {
+    composable(
+        route = "$LOGIN_SCREEN$EMAIL_VALUE_ARG",
+        arguments = listOf(navArgument(EMAIL_VALUE) { defaultValue = "" })
+    ) {
         LoginScreen(
             openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) },
-            openScreen = { route -> appState.navigate(route) }
+            openScreen = { route -> appState.navigate(route) },
+            emailValue = it.arguments?.getString(EMAIL_VALUE) ?: ""
         )
     }
     composable(REGISTER_SCREEN) {

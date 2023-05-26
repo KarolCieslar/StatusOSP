@@ -36,6 +36,7 @@
     <string name="register_screen_description">Wpisz adres email oraz hasło aby założyć konto. Jesli posiadasz już konto możesz się zalogować klikając w przycisk \'Zaloguj się\'</string>
     <string name="register_screen_register_button">Zarejestruj się</string>
     <string name="register_screen_login">Masz już konto? Zaloguj się!</string>
+    <string name="register_screen_successfully_register">Rejestracja przebiegła pomyślnie, możesz się zalogować!</string>
 
     <!-- Password Recovery Screen -->
     <string name="password_recovery_screen_title">ODZYSKAJ HASŁO</string>
