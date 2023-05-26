@@ -51,6 +51,7 @@ import pl.kcieslar.statusosp.common.compose.PermissionDialog
 import pl.kcieslar.statusosp.common.compose.RationaleDialog
 import pl.kcieslar.statusosp.common.snackbar.SnackbarManager
 import pl.kcieslar.statusosp.screens.auth.login.LoginScreen
+import pl.kcieslar.statusosp.screens.auth.password_recovery.RecoveryPasswordScreen
 import pl.kcieslar.statusosp.screens.auth.register.RegisterScreen
 import pl.kcieslar.statusosp.screens.firstopen.StepFirstScreen
 import pl.kcieslar.statusosp.screens.firstopen.StepSecondScreen
@@ -123,6 +124,8 @@ fun resources(): Resources {
 }
 
 fun NavGraphBuilder.statusOspNavGraph(appState: StatusOSPAppState) {
+
+    // Auth screens
     composable(LOGIN_SCREEN) {
         LoginScreen(
             openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) },
@@ -134,6 +137,13 @@ fun NavGraphBuilder.statusOspNavGraph(appState: StatusOSPAppState) {
             openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) },
         )
     }
+    composable(RECOVERY_PASSWORD_SCREEN) {
+        RecoveryPasswordScreen(
+            openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) },
+        )
+    }
+
+    // First open screens
     composable(STEP_FIRST_SCREEN) {
         StepFirstScreen(
             openScreen = { route -> appState.navigate(route) }

@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import pl.kcieslar.statusosp.R
+import pl.kcieslar.statusosp.RECOVERY_PASSWORD_SCREEN
 import pl.kcieslar.statusosp.REGISTER_SCREEN
 import pl.kcieslar.statusosp.STEP_FIRST_SCREEN
 import pl.kcieslar.statusosp.common.compose.EmailTextField
@@ -62,7 +63,11 @@ fun LoginScreen(
             onChange = { viewModel.onPasswordChange(it) })
         Spacer(modifier = Modifier.height(5.dp))
         Text(
-            modifier = Modifier.align(Alignment.End),
+            modifier = Modifier
+                .align(Alignment.End)
+                .clickable {
+                    openScreen(RECOVERY_PASSWORD_SCREEN)
+                },
             text = stringResource(R.string.login_screen_forgot_password)
         )
         Spacer(modifier = Modifier.height(15.dp))
