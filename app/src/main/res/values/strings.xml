@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">StatusOSP</string>
+
+    <!-- Step First Screen -->
+    <string name="step_first_screen_description">Zanim przejdziemy dalej musisz się przedstawić. Wpisana przez Ciebie nazwa będzie wyświetlana na listach jednostek do której dołączysz\n\nSwoją nazwę będziesz mógł zmienić w każdej chwili w ustawieniach aplikacji.</string>
+    <string name="step_first_screen_input_error">Nazwa musi mieć minimum 5 znaków</string>
+    <string name="step_first_screen_input_label">Imię i nazwisko lub pseudonim</string>
+    <string name="step_first_screen_button">PRZEJDŹ DALEJ</string>
+    <string name="step_second_screen_description">Zezwól aplikacji wysyłać powiadomienia dotyczące zmiany statusu druhów z Twoich grup gotowości!\n\nOpcję to będziesz mógł zmienić w każdej chwili w ustawieniach aplikacji.</string>
+
+    <!-- Step Second Screen -->
+    <string name="step_second_screen_decline_button">Nie, nie chcę tego</string>
+    <string name="step_second_screen_accept_button">Zgadzam się</string>
+
+    <!-- Step Third Screen -->
+    <string name="step_third_screen_description">Jeśli Twoja jednostka została już utworzona poproś jej administratora o podanie kodu a następnie dołącz do niej!\n\nMożesz również stworzyć nową grupę dla Twojej jednostki. Będziesz wtedy jej administratorem, który może zarządzać listą członków oraz modyfikować ustawienia grupy.</string>
+    <string name="step_third_screen_join_group_button">Dołącz do grupy</string>
+    <string name="step_third_screen_create_group_button">Stwórz nową</string>
+    <string name="step_third_screen_or_text">lub</string>
 </resources>

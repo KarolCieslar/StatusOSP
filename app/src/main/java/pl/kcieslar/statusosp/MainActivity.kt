@@ -7,17 +7,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import pl.kcieslar.statusosp.screens.firstopen.StepFirstScreen
+import pl.kcieslar.statusosp.navigation.Navigation
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
             StatusOSPTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    StepFirstScreen()
+                    Navigation()
                 }
             }
         }

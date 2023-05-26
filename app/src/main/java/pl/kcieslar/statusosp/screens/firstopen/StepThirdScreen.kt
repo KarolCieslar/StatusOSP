@@ -1,7 +1,5 @@
 package pl.kcieslar.statusosp.screens.firstopen
 
-import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,12 +28,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 import pl.kcieslar.statusosp.views.PrimaryButton
@@ -43,8 +43,7 @@ import pl.kcieslar.statusosp.views.SecondaryButton
 import pl.kcieslar.statusosp.views.StepView
 
 @Composable
-fun StepThirdScreen() {
-    val context = LocalContext.current
+fun StepThirdScreen(navController: NavController) {
 
     Column(
         modifier = Modifier
@@ -68,7 +67,7 @@ fun StepThirdScreen() {
                 Text(
                     modifier = Modifier.weight(1f),
                     fontSize = 14.sp,
-                    text = "Jeśli Twoja jednostka została już utworzona poproś jej administratora o podanie kodu a następnie dołącz do niej!\n\nMożesz również stworzyć nową grupę dla Twojej jednostki. Będziesz wtedy jej administratorem, który może zarządzać listą członków oraz modyfikować ustawienia grupy."
+                    text = stringResource(R.string.step_third_screen_description)
                 )
             }
         }
@@ -80,11 +79,11 @@ fun StepThirdScreen() {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                PrimaryButton(modifier = Modifier.weight(1.2f), text = "Dołącz do grupy") {
+                PrimaryButton(modifier = Modifier.weight(1.2f), text = stringResource(R.string.step_third_screen_join_group_button)) {
                     // TODO: Start connect user to group
                 }
-                Text(text = "lub", textAlign = TextAlign.Center, modifier = Modifier.weight(0.3f))
-                SecondaryButton(modifier = Modifier.weight(0.8f), text = "Stwórz nową") {
+                Text(text = stringResource(R.string.step_third_screen_or_text), textAlign = TextAlign.Center, modifier = Modifier.weight(0.3f))
+                SecondaryButton(modifier = Modifier.weight(0.8f), text = stringResource(R.string.step_third_screen_create_group_button)) {
                     // TODO: Send user to create new group screen
                 }
             }
@@ -151,6 +150,6 @@ fun EnterGroupCodeFields() {
 @Composable
 fun StepThirdScreenPreview() {
     StatusOSPTheme {
-        StepThirdScreen()
+        StepThirdScreen(navController = NavController(LocalContext.current))
     }
 }

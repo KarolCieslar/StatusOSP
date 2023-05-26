@@ -1,6 +1,5 @@
 package pl.kcieslar.statusosp.screens.firstopen
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +9,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,19 +27,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import pl.kcieslar.statusosp.R
+import pl.kcieslar.statusosp.navigation.Screen
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 import pl.kcieslar.statusosp.views.PrimaryButton
 import pl.kcieslar.statusosp.views.StepView
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StepFirstScreen() {
+fun StepFirstScreen(navController: NavController) {
     var text by rememberSaveable { mutableStateOf("") }
-    val context = LocalContext.current
+    var isError by rememberSaveable { mutableStateOf(false) }
+
+    fun handleNavigateToSecondScreen(text: String) {
+        isError = text.length < 3
+        if (!isError) {
+            navController.navigate(Screen.StepSecondScreen.route)
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -53,7 +67,7 @@ fun StepFirstScreen() {
                 Text(
                     modifier = Modifier.weight(1f),
                     fontSize = 16.sp,
-                    text = "Zanim przejdziemy dalej musisz się przedstawić. Wpisana przez Ciebie nazwa będzie wyświetlana na listach jednostek do której dołączysz\n\nSwoją nazwę będziesz mógł zmienić w każdej chwili w ustawieniach aplikacji."
+                    text = stringResource(R.string.step_first_screen_description)
                 )
                 Image(
                     modifier = Modifier.weight(0.5f),
@@ -69,11 +83,27 @@ fun StepFirstScreen() {
                     .fillMaxWidth(),
                 singleLine = true,
                 value = text,
+                isError = isError,
+                supportingText = {
+                    if (isError) {
+                        Text(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = stringResource(R.string.step_first_screen_input_error),
+                            color = MaterialTheme.colorScheme.error
+                        )
+                    }
+                },
+                trailingIcon = {
+                    if (isError)
+                        Icon(Icons.Default.Warning,"error", tint = MaterialTheme.colorScheme.error)
+                },
                 onValueChange = { text = it },
-                label = { Text(text = "Imię i nazwisko lub pseudonim") }
+                label = { Text(text = stringResource(R.string.step_first_screen_input_label)) },
+                keyboardActions = KeyboardActions { handleNavigateToSecondScreen(text) },
             )
             Spacer(modifier = Modifier.height(10.dp))
-            PrimaryButton(text = "PRZEJDŹ DALEJ") {
+            PrimaryButton(text = stringResource(R.string.step_first_screen_button)) {
+                handleNavigateToSecondScreen(text)
                 // TODO: Verify username field and send user to StepSecondScreen + save to Firebase
             }
         }
@@ -84,6 +114,6 @@ fun StepFirstScreen() {
 @Composable
 fun StepFirstScreenPreview() {
     StatusOSPTheme {
-        StepFirstScreen()
+        StepFirstScreen(navController = NavController(LocalContext.current))
     }
 }
