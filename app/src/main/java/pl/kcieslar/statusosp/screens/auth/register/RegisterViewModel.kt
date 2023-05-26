@@ -50,7 +50,7 @@ class RegisterViewModel @Inject constructor(
             return
         }
 
-        if (password.isValidPassword()) {
+        if (!password.isValidPassword()) {
             SnackbarManager.showMessage(R.string.input_error_bad_password)
             return
         }
