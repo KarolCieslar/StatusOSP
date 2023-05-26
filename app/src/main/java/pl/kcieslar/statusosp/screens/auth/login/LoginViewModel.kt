@@ -57,7 +57,5 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun onForgotPasswordClick() {
-        // navigate to forgot password screen
-    }
+    fun isUserLogged() = accountService.hasUser
 }

@@ -20,9 +20,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import pl.kcieslar.statusosp.LOGIN_SCREEN
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.RECOVERY_PASSWORD_SCREEN
 import pl.kcieslar.statusosp.REGISTER_SCREEN
+import pl.kcieslar.statusosp.STEP_FIRST_SCREEN
 import pl.kcieslar.statusosp.common.compose.EmailTextField
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 import pl.kcieslar.statusosp.common.compose.PasswordTextField
@@ -38,9 +40,11 @@ fun LoginScreen(
 ) {
     val uiState by viewModel.uiState
     if (emailValue.isNotEmpty()) {
-        LaunchedEffect(Unit) {
-            viewModel.onEmailChange(emailValue)
-        }
+        viewModel.onEmailChange(emailValue)
+    }
+
+    if (viewModel.isUserLogged()) {
+        openAndPopUp(STEP_FIRST_SCREEN, LOGIN_SCREEN)
     }
 
     Column(
