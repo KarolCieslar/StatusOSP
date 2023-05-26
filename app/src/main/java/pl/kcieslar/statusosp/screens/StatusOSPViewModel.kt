@@ -10,7 +10,7 @@ import pl.kcieslar.statusosp.common.snackbar.SnackbarMessage.Companion.toSnackba
 import pl.kcieslar.statusosp.model.service.FirebaseLogService
 
 open class StatusOSPViewModel(private val logService: FirebaseLogService) : ViewModel() {
-    fun launchCatching(snackbar: Boolean = true, block: suspend CoroutineScope.() -> Unit) =
+    fun launchCatching(snackbar: Boolean = true, invokeOnCompletion: () -> Unit? = {}, block: suspend CoroutineScope.() -> Unit) =
         viewModelScope.launch(
             CoroutineExceptionHandler { _, throwable ->
                 if (snackbar) {
@@ -20,5 +20,5 @@ open class StatusOSPViewModel(private val logService: FirebaseLogService) : View
                 logService.printStackTrace(throwable)
             },
             block = block
-        )
+        ).invokeOnCompletion { invokeOnCompletion() }
 }

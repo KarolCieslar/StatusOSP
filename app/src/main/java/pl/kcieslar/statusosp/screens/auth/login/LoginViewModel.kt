@@ -34,6 +34,10 @@ class LoginViewModel @Inject constructor(
         uiState.value = uiState.value.copy(password = newValue)
     }
 
+    private fun changeCallProcessStatus(newValue: Boolean) {
+        uiState.value = uiState.value.copy(isCallInProgress = newValue)
+    }
+
     fun onLoginButtonClick(openAndPopUp: (String, String) -> Unit) {
         if (!email.isValidEmail()) {
             SnackbarManager.showMessage(R.string.input_error_bad_email)
@@ -45,7 +49,9 @@ class LoginViewModel @Inject constructor(
             return
         }
 
-        launchCatching {
+        launchCatching(invokeOnCompletion = {
+            changeCallProcessStatus(false)
+        }) {
             accountService.login(email, password)
             openAndPopUp(STEP_FIRST_SCREEN, LOGIN_SCREEN)
         }

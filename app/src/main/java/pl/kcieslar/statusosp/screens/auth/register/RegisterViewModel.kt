@@ -61,11 +61,13 @@ class RegisterViewModel @Inject constructor(
             return
         }
 
-        launchCatching {
+        launchCatching(invokeOnCompletion = {
+            changeCallProcessStatus(false)
+        }) {
             changeCallProcessStatus(true)
             accountService.register(email, password)
-            changeCallProcessStatus(false)
-//            openAndPopUp(STEP_FIRST_SCREEN, REGISTER_SCREEN)
+            accountService.login(email, password)
+            openAndPopUp(STEP_FIRST_SCREEN, REGISTER_SCREEN)
         }
     }
 }

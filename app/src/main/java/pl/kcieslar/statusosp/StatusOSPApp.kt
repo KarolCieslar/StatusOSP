@@ -84,7 +84,7 @@ fun StatusOSPApp() {
                     startDestination = LOGIN_SCREEN,
                     modifier = Modifier.padding(innerPaddingModifier)
                 ) {
-                    makeItSoGraph(appState)
+                    statusOspNavGraph(appState)
                 }
             }
         }
@@ -122,7 +122,7 @@ fun resources(): Resources {
     return LocalContext.current.resources
 }
 
-fun NavGraphBuilder.makeItSoGraph(appState: StatusOSPAppState) {
+fun NavGraphBuilder.statusOspNavGraph(appState: StatusOSPAppState) {
     composable(LOGIN_SCREEN) {
         LoginScreen(
             openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) },

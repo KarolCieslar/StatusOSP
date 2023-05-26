@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,40 +48,29 @@ fun LoginScreen(
             fontWeight = FontWeight.Bold,
             fontSize = 27.sp,
         )
-        Spacer(
-            modifier = Modifier.height(10.dp)
-        )
-        Text(
-            text = stringResource(R.string.login_screen_description)
-        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(text = stringResource(R.string.login_screen_description))
         Spacer(
             modifier = Modifier.height(15.dp)
         )
         EmailTextField(
             value = uiState.email,
             onChange = { viewModel.onEmailChange(it) })
-        Spacer(
-            modifier = Modifier.height(8.dp)
-        )
+        Spacer(modifier = Modifier.height(8.dp))
         PasswordTextField(
             value = uiState.password,
             onChange = { viewModel.onPasswordChange(it) })
-        Spacer(
-            modifier = Modifier.height(5.dp)
-        )
+        Spacer(modifier = Modifier.height(5.dp))
         Text(
             modifier = Modifier.align(Alignment.End),
             text = stringResource(R.string.login_screen_forgot_password)
         )
-        Spacer(
-            modifier = Modifier.height(15.dp)
-        )
+        Spacer(modifier = Modifier.height(15.dp))
         PrimaryButton(
-            text = stringResource(R.string.login_screen_login_button)
+            text = stringResource(R.string.login_screen_login_button),
+            showProgressBar = uiState.isCallInProgress
         ) { viewModel.onLoginButtonClick(openAndPopUp) }
-        Spacer(
-            modifier = Modifier.height(10.dp)
-        )
+        Spacer(modifier = Modifier.height(10.dp))
         Text(
             modifier = Modifier.clickable {
                 openScreen(REGISTER_SCREEN)

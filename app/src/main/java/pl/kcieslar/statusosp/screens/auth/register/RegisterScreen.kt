@@ -46,38 +46,26 @@ fun RegisterScreen(
             fontWeight = FontWeight.Bold,
             fontSize = 27.sp,
         )
-        Spacer(
-            modifier = Modifier.height(10.dp)
-        )
-        Text(
-            text = stringResource(R.string.register_screen_description)
-        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(text = stringResource(R.string.register_screen_description))
         Spacer(modifier = Modifier.height(15.dp))
         EmailTextField(
             value = uiState.email,
             onChange = { viewModel.onEmailChange(it) })
-        Spacer(
-            modifier = Modifier.height(8.dp)
-        )
+        Spacer(modifier = Modifier.height(8.dp))
         PasswordTextField(
             value = uiState.password,
             onChange = { viewModel.onPasswordChange(it) })
-        Spacer(
-            modifier = Modifier.height(8.dp)
-        )
+        Spacer(modifier = Modifier.height(8.dp))
         PasswordTextField(
             value = uiState.repeatPassword,
             onChange = { viewModel.onRepeatPasswordChange(it) })
-        Spacer(
-            modifier = Modifier.height(15.dp)
-        )
+        Spacer(modifier = Modifier.height(15.dp))
         PrimaryButton(
             text = stringResource(R.string.register_screen_register_button),
             showProgressBar = uiState.isCallInProgress
         ) { viewModel.onRegisterButtonClick(openAndPopUp) }
-        Spacer(
-            modifier = Modifier.height(10.dp)
-        )
+        Spacer(modifier = Modifier.height(10.dp))
         Text(
             modifier = Modifier.clickable { openAndPopUp(LOGIN_SCREEN, REGISTER_SCREEN) },
             text = stringResource(R.string.register_screen_login)
