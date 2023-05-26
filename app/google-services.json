@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "62924776775",
+    "firebase_url": "https://statusosp-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "statusosp",
+    "storage_bucket": "statusosp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62924776775:android:91b528d9213f661da9d862",
+        "android_client_info": {
+          "package_name": "pl.kcieslar.statusosp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGF2olDMoP_ujkmFt502vYc0mBM7ozK2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

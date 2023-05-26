@@ -1,6 +1,5 @@
-package pl.kcieslar.statusosp.views
+package pl.kcieslar.statusosp.common.compose
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,11 +8,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,7 +20,7 @@ import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 
 @Composable
-fun PrimaryButton(modifier: Modifier = Modifier, text: String, clickAction: () -> Unit) {
+fun PrimaryButton(modifier: Modifier = Modifier, text: String, showProgressBar: Boolean = false, clickAction: () -> Unit) {
     Button(
         modifier = modifier
             .fillMaxWidth()
@@ -31,7 +30,11 @@ fun PrimaryButton(modifier: Modifier = Modifier, text: String, clickAction: () -
         onClick = { clickAction() },
         colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.primary))
     ) {
-        Text(text = text)
+        if (showProgressBar) {
+            CircularProgressIndicator()
+        } else {
+            Text(text = text)
+        }
     }
 }
 

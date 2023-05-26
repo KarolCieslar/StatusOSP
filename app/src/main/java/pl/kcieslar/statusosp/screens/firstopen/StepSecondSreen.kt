@@ -1,6 +1,5 @@
 package pl.kcieslar.statusosp.screens.firstopen
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,13 +21,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
-import pl.kcieslar.statusosp.views.PrimaryButton
-import pl.kcieslar.statusosp.views.SecondaryButton
-import pl.kcieslar.statusosp.views.StepView
+import pl.kcieslar.statusosp.common.compose.PrimaryButton
+import pl.kcieslar.statusosp.common.compose.SecondaryButton
+import pl.kcieslar.statusosp.common.compose.StepView
 
 @Composable
-fun StepSecondScreen(navController: NavController) {
-
+fun StepSecondScreen(
+    openScreen: (String) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -73,6 +73,6 @@ fun StepSecondScreen(navController: NavController) {
 @Composable
 fun StepSecondScreenPreview() {
     StatusOSPTheme {
-        StepSecondScreen(navController = NavController(LocalContext.current))
+        StepSecondScreen(openScreen = {})
     }
 }

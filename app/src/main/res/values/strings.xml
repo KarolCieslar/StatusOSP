@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">StatusOSP</string>
+    <string name="generic_error">Wystąpił błąd podczas wykonywania operacji</string>
+
+    <!-- Input Errors -->
+    <string name="input_error_bad_email">Niepoprawny adres email</string>
+    <string name="input_error_bad_password">Hasło nie może być puste</string>
+    <string name="input_error_password_not_match">Wprowadzone hasła nie są identyczne</string>
 
     <!-- Step First Screen -->
     <string name="step_first_screen_description">Zanim przejdziemy dalej musisz się przedstawić. Wpisana przez Ciebie nazwa będzie wyświetlana na listach jednostek do której dołączysz\n\nSwoją nazwę będziesz mógł zmienić w każdej chwili w ustawieniach aplikacji.</string>
@@ -17,4 +23,17 @@
     <string name="step_third_screen_join_group_button">Dołącz do grupy</string>
     <string name="step_third_screen_create_group_button">Stwórz nową</string>
     <string name="step_third_screen_or_text">lub</string>
+
+    <!-- Login Screen -->
+    <string name="login_screen_title">LOGOWANIE</string>
+    <string name="login_screen_description">Użyj swoich danych aby się zalogować. Jesli nie posiadasz konta możesz je szybko założyć klikając w przycisk \'Zarejestruj się\'</string>
+    <string name="login_screen_forgot_password">Zapomniałem hasła</string>
+    <string name="login_screen_login_button">Zaloguj się</string>
+    <string name="login_screen_register">Nie masz konta? Zarejestruj się!</string>
+
+    <!-- Register Screen -->
+    <string name="register_screen_title">REJESTRACJA</string>
+    <string name="register_screen_description">Wpisz adres email oraz hasło aby założyć konto. Jesli posiadasz już konto możesz się zalogować klikając w przycisk \'Zaloguj się\'</string>
+    <string name="register_screen_register_button">Zarejestruj się</string>
+    <string name="register_screen_login">Masz już konto? Zaloguj się!</string>
 </resources>

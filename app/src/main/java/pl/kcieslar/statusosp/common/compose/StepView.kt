@@ -1,4 +1,4 @@
-package pl.kcieslar.statusosp.views
+package pl.kcieslar.statusosp.common.compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

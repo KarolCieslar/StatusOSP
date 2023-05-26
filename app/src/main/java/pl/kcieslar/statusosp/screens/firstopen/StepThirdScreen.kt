@@ -38,13 +38,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
-import pl.kcieslar.statusosp.views.PrimaryButton
-import pl.kcieslar.statusosp.views.SecondaryButton
-import pl.kcieslar.statusosp.views.StepView
+import pl.kcieslar.statusosp.common.compose.PrimaryButton
+import pl.kcieslar.statusosp.common.compose.SecondaryButton
+import pl.kcieslar.statusosp.common.compose.StepView
 
 @Composable
-fun StepThirdScreen(navController: NavController) {
-
+fun StepThirdScreen(
+    openAndPopUp: (String, String) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -150,6 +151,6 @@ fun EnterGroupCodeFields() {
 @Composable
 fun StepThirdScreenPreview() {
     StatusOSPTheme {
-        StepThirdScreen(navController = NavController(LocalContext.current))
+        StepThirdScreen(openAndPopUp = { _, _ -> })
     }
 }

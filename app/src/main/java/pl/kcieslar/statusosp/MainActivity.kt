@@ -7,16 +7,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import pl.kcieslar.statusosp.navigation.Navigation
+import dagger.hilt.android.AndroidEntryPoint
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             StatusOSPTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Navigation()
+                    StatusOSPApp()
                 }
             }
         }
