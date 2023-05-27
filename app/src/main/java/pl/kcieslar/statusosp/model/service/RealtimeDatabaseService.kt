@@ -1,5 +1,6 @@
 package pl.kcieslar.statusosp.model.service
 
 interface RealtimeDatabaseService {
-    suspend fun login(email: String, password: String)
+    suspend fun savePushNotificationAccept(isAccepted: Boolean)
+    suspend fun saveUsername(username: String)
 }

@@ -4,11 +4,13 @@ import androidx.compose.runtime.mutableStateOf
 import dagger.hilt.android.lifecycle.HiltViewModel
 import pl.kcieslar.statusosp.common.ext.isValidUsername
 import pl.kcieslar.statusosp.model.service.FirebaseLogService
+import pl.kcieslar.statusosp.model.service.RealtimeDatabaseService
 import pl.kcieslar.statusosp.screens.StatusOSPViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class FirstOpenViewModel @Inject constructor(
+    private val realtimeDatabaseService: RealtimeDatabaseService,
     logService: FirebaseLogService
 ) : StatusOSPViewModel(logService) {
     var uiState = mutableStateOf(FirstOpenUiState())
@@ -27,11 +29,16 @@ class FirstOpenViewModel @Inject constructor(
         if (!username.isValidUsername()) {
             return
         }
-        onClickAction()
+        launchCatching {
+            realtimeDatabaseService.saveUsername(username)
+            onClickAction()
+        }
     }
 
     fun onPushAcceptDeclineButtonClick(accepted: Boolean, onClickAction: () -> Unit) {
-        // Save push settings to shared preferences
-        onClickAction()
+        launchCatching {
+            realtimeDatabaseService.savePushNotificationAccept(accepted)
+            onClickAction()
+        }
     }
 }
