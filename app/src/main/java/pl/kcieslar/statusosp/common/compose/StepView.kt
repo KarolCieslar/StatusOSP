@@ -41,7 +41,7 @@ enum class StepViewSelectStatus {
 @Composable
 fun StepView(selectedOption: Int) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().padding(16.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         val stepViewsList = listOf(

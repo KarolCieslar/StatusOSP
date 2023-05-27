@@ -3,13 +3,8 @@ package pl.kcieslar.statusosp.screens.auth.password_recovery
 import androidx.compose.runtime.mutableStateOf
 import dagger.hilt.android.lifecycle.HiltViewModel
 import pl.kcieslar.statusosp.R
-import pl.kcieslar.statusosp.RECOVERY_PASSWORD_SCREEN
-import pl.kcieslar.statusosp.REGISTER_SCREEN
-import pl.kcieslar.statusosp.STEP_FIRST_SCREEN
 import pl.kcieslar.statusosp.common.ext.isValidEmail
-import pl.kcieslar.statusosp.common.ext.passwordMatches
 import pl.kcieslar.statusosp.common.snackbar.SnackbarManager
-import pl.kcieslar.statusosp.common.snackbar.SnackbarMessage.Companion.toSnackbarMessage
 import pl.kcieslar.statusosp.model.service.AccountService
 import pl.kcieslar.statusosp.model.service.FirebaseLogService
 import pl.kcieslar.statusosp.screens.StatusOSPViewModel

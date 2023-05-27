@@ -1,4 +1,4 @@
-package pl.kcieslar.statusosp.screens.firstopen.step_third
+package pl.kcieslar.statusosp.screens.firstopen.steps
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -41,16 +41,11 @@ import pl.kcieslar.statusosp.common.compose.SecondaryButton
 import pl.kcieslar.statusosp.common.compose.StepView
 
 @Composable
-fun StepThirdScreen(
-    openAndPopUp: (String, String) -> Unit
-) {
+fun StepThirdScreen() {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+        modifier = Modifier.fillMaxSize().padding(16.dp),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        StepView(2)
         Column {
             Row(
                 modifier = Modifier.padding(horizontal = 5.dp),
@@ -149,6 +144,6 @@ fun EnterGroupCodeFields() {
 @Composable
 fun StepThirdScreenPreview() {
     StatusOSPTheme {
-        StepThirdScreen(openAndPopUp = { _, _ -> })
+        StepThirdScreen()
     }
 }
