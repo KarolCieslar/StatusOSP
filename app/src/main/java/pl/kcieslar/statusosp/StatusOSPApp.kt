@@ -54,9 +54,9 @@ import pl.kcieslar.statusosp.common.snackbar.SnackbarManager
 import pl.kcieslar.statusosp.screens.auth.login.LoginScreen
 import pl.kcieslar.statusosp.screens.auth.password_recovery.RecoveryPasswordScreen
 import pl.kcieslar.statusosp.screens.auth.register.RegisterScreen
-import pl.kcieslar.statusosp.screens.firstopen.StepFirstScreen
-import pl.kcieslar.statusosp.screens.firstopen.StepSecondScreen
-import pl.kcieslar.statusosp.screens.firstopen.StepThirdScreen
+import pl.kcieslar.statusosp.screens.firstopen.step_first.StepFirstScreen
+import pl.kcieslar.statusosp.screens.firstopen.step_second.StepSecondScreen
+import pl.kcieslar.statusosp.screens.firstopen.step_third.StepThirdScreen
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 
 @OptIn(ExperimentalMaterial3Api::class)

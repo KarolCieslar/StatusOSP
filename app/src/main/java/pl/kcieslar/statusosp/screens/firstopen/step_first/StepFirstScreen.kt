@@ -1,4 +1,4 @@
-package pl.kcieslar.statusosp.screens.firstopen
+package pl.kcieslar.statusosp.screens.firstopen.step_first
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,14 +24,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import pl.kcieslar.statusosp.R
+import pl.kcieslar.statusosp.STEP_SECOND_SCREEN
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 import pl.kcieslar.statusosp.common.compose.PrimaryButton
 import pl.kcieslar.statusosp.common.compose.StepView
@@ -40,10 +39,10 @@ import pl.kcieslar.statusosp.common.compose.StepView
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StepFirstScreen(
-    openScreen: (String) -> Unit = {}
+    openScreen: (String) -> Unit = {},
+    viewModel: StepFirstViewModel = hiltViewModel()
 ) {
-    var text by rememberSaveable { mutableStateOf("") }
-    var isError by rememberSaveable { mutableStateOf(false) }
+    val uiState by viewModel.uiState
 
     Column(
         modifier = Modifier
@@ -76,27 +75,27 @@ fun StepFirstScreen(
                 modifier = Modifier
                     .fillMaxWidth(),
                 singleLine = true,
-                value = text,
-                isError = isError,
+                value = uiState.username,
+                isError = uiState.isError,
                 supportingText = {
-                    if (isError) {
+                    if (uiState.isError) {
                         Text(
                             modifier = Modifier.fillMaxWidth(),
-                            text = stringResource(R.string.step_first_screen_input_error),
+                            text = stringResource(R.string.step_first_screen_bad_username),
                             color = MaterialTheme.colorScheme.error
                         )
                     }
                 },
                 trailingIcon = {
-                    if (isError)
+                    if (uiState.isError)
                         Icon(Icons.Default.Warning, "error", tint = MaterialTheme.colorScheme.error)
                 },
-                onValueChange = { text = it },
+                onValueChange = { viewModel.onUsernameChange(it) },
                 label = { Text(text = stringResource(R.string.step_first_screen_input_label)) }
             )
             Spacer(modifier = Modifier.height(10.dp))
             PrimaryButton(text = stringResource(R.string.step_first_screen_button)) {
-
+                viewModel.onNextButtonClick { openScreen(it) }
             }
         }
     }

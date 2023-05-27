@@ -9,12 +9,12 @@
 
     <!-- Step First Screen -->
     <string name="step_first_screen_description">Zanim przejdziemy dalej musisz się przedstawić. Wpisana przez Ciebie nazwa będzie wyświetlana na listach jednostek do której dołączysz\n\nSwoją nazwę będziesz mógł zmienić w każdej chwili w ustawieniach aplikacji.</string>
-    <string name="step_first_screen_input_error">Nazwa musi mieć minimum 5 znaków</string>
     <string name="step_first_screen_input_label">Imię i nazwisko lub pseudonim</string>
     <string name="step_first_screen_button">PRZEJDŹ DALEJ</string>
-    <string name="step_second_screen_description">Zezwól aplikacji wysyłać powiadomienia dotyczące zmiany statusu druhów z Twoich grup gotowości!\n\nOpcję to będziesz mógł zmienić w każdej chwili w ustawieniach aplikacji.</string>
+    <string name="step_first_screen_bad_username">Nazwa użytkownika musi składać się z conajmniej 6 znaków i nie może być dłuższa niż 40 znaków</string>
 
     <!-- Step Second Screen -->
+    <string name="step_second_screen_description">Zezwól aplikacji wysyłać powiadomienia dotyczące zmiany statusu druhów z Twoich grup gotowości!\n\nOpcję to będziesz mógł zmienić w każdej chwili w ustawieniach aplikacji.</string>
     <string name="step_second_screen_decline_button">Nie, nie chcę tego</string>
     <string name="step_second_screen_accept_button">Zgadzam się</string>
 
