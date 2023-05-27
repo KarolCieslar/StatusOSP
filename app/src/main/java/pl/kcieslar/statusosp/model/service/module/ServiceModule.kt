@@ -22,8 +22,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import pl.kcieslar.statusosp.model.service.AccountService
 import pl.kcieslar.statusosp.model.service.FirebaseLogService
+import pl.kcieslar.statusosp.model.service.RealtimeDatabaseService
 import pl.kcieslar.statusosp.model.service.impl.AccountServiceImpl
 import pl.kcieslar.statusosp.model.service.impl.FirebaseLogServiceImpl
+import pl.kcieslar.statusosp.model.service.impl.RealtimeDatabaseServiceImpl
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -33,4 +35,7 @@ abstract class ServiceModule {
 
     @Binds
     abstract fun provideFirebaseLogService(impl: FirebaseLogServiceImpl): FirebaseLogService
+
+    @Binds
+    abstract fun provideRealtimeDatabaseService(impl: RealtimeDatabaseServiceImpl): RealtimeDatabaseService
 }

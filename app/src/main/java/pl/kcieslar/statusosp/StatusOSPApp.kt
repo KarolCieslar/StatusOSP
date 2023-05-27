@@ -54,9 +54,9 @@ import pl.kcieslar.statusosp.common.snackbar.SnackbarManager
 import pl.kcieslar.statusosp.screens.auth.login.LoginScreen
 import pl.kcieslar.statusosp.screens.auth.password_recovery.RecoveryPasswordScreen
 import pl.kcieslar.statusosp.screens.auth.register.RegisterScreen
-import pl.kcieslar.statusosp.screens.firstopen.step_first.StepFirstScreen
-import pl.kcieslar.statusosp.screens.firstopen.step_second.StepSecondScreen
-import pl.kcieslar.statusosp.screens.firstopen.step_third.StepThirdScreen
+import pl.kcieslar.statusosp.screens.firstopen.FirstOpenScreen
+import pl.kcieslar.statusosp.screens.firstopen.steps.StepSecondScreen
+import pl.kcieslar.statusosp.screens.firstopen.steps.StepThirdScreen
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -149,20 +149,8 @@ fun NavGraphBuilder.statusOspNavGraph(appState: StatusOSPAppState) {
     }
 
     // First open screens
-    composable(STEP_FIRST_SCREEN) {
-        StepFirstScreen(
-            openScreen = { route -> appState.navigate(route) }
-        )
-    }
-    composable(STEP_SECOND_SCREEN) {
-        StepSecondScreen(
-            openScreen = { route -> appState.navigate(route) }
-        )
-    }
-    composable(STEP_THIRD_SCREEN) {
-        StepThirdScreen(
-            openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) },
-        )
+    composable(FIRST_OPEN_STEPS) {
+        FirstOpenScreen()
     }
 
 //  composable(

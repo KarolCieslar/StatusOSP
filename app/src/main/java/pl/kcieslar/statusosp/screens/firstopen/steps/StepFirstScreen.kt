@@ -1,4 +1,4 @@
-package pl.kcieslar.statusosp.screens.firstopen.step_first
+package pl.kcieslar.statusosp.screens.firstopen.steps
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -18,9 +18,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -31,16 +28,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import pl.kcieslar.statusosp.R
-import pl.kcieslar.statusosp.STEP_SECOND_SCREEN
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 import pl.kcieslar.statusosp.common.compose.PrimaryButton
-import pl.kcieslar.statusosp.common.compose.StepView
+import pl.kcieslar.statusosp.screens.firstopen.FirstOpenViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StepFirstScreen(
-    openScreen: (String) -> Unit = {},
-    viewModel: StepFirstViewModel = hiltViewModel()
+    onClickNextButton: () -> Unit,
+    viewModel: FirstOpenViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState
 
@@ -50,7 +46,6 @@ fun StepFirstScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        StepView(0)
         Column {
             Row(
                 modifier = Modifier.padding(horizontal = 5.dp),
@@ -95,7 +90,7 @@ fun StepFirstScreen(
             )
             Spacer(modifier = Modifier.height(10.dp))
             PrimaryButton(text = stringResource(R.string.step_first_screen_button)) {
-                viewModel.onNextButtonClick { openScreen(it) }
+                viewModel.onNextButtonClick { onClickNextButton() }
             }
         }
     }
@@ -105,6 +100,6 @@ fun StepFirstScreen(
 @Composable
 fun StepFirstScreenPreview() {
     StatusOSPTheme {
-        StepFirstScreen()
+        StepFirstScreen(onClickNextButton = {})
     }
 }

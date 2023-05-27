@@ -6,7 +6,6 @@ import pl.kcieslar.statusosp.EMAIL_VALUE
 import pl.kcieslar.statusosp.LOGIN_SCREEN
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.REGISTER_SCREEN
-import pl.kcieslar.statusosp.STEP_FIRST_SCREEN
 import pl.kcieslar.statusosp.common.ext.isValidEmail
 import pl.kcieslar.statusosp.common.ext.isValidPassword
 import pl.kcieslar.statusosp.common.ext.passwordMatches

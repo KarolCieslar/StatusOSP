@@ -1,4 +1,4 @@
-package pl.kcieslar.statusosp.screens.firstopen.step_second
+package pl.kcieslar.statusosp.screens.firstopen.steps
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -17,15 +17,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 import pl.kcieslar.statusosp.common.compose.PrimaryButton
 import pl.kcieslar.statusosp.common.compose.SecondaryButton
 import pl.kcieslar.statusosp.common.compose.StepView
+import pl.kcieslar.statusosp.screens.firstopen.FirstOpenViewModel
 
 @Composable
 fun StepSecondScreen(
-    openScreen: (String) -> Unit
+    onButtonClick: () -> Unit,
+    viewModel: FirstOpenViewModel = hiltViewModel()
 ) {
     Column(
         modifier = Modifier
@@ -33,7 +36,6 @@ fun StepSecondScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        StepView(1)
         Column {
             Row(
                 modifier = Modifier.padding(horizontal = 5.dp),
@@ -58,10 +60,10 @@ fun StepSecondScreen(
             horizontalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             SecondaryButton(modifier = Modifier.weight(1f), text = stringResource(R.string.step_second_screen_decline_button)) {
-                // TODO: Send user to StepThirdScreen and set notification to false
+                viewModel.onPushAcceptDeclineButtonClick(accepted = false) { onButtonClick() }
             }
             PrimaryButton(modifier = Modifier.weight(1f), text = stringResource(R.string.step_second_screen_accept_button)) {
-                // TODO: Send user to StepThirdScreen and set notification to true
+                viewModel.onPushAcceptDeclineButtonClick(accepted = true) { onButtonClick() }
             }
         }
     }
@@ -71,6 +73,6 @@ fun StepSecondScreen(
 @Composable
 fun StepSecondScreenPreview() {
     StatusOSPTheme {
-        StepSecondScreen(openScreen = {})
+        StepSecondScreen(onButtonClick = {})
     }
 }
