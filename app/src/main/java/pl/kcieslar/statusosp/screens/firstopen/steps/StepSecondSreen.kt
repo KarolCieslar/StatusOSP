@@ -22,8 +22,7 @@ import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 import pl.kcieslar.statusosp.common.compose.PrimaryButton
 import pl.kcieslar.statusosp.common.compose.SecondaryButton
-import pl.kcieslar.statusosp.common.compose.StepView
-import pl.kcieslar.statusosp.screens.firstopen.FirstOpenViewModel
+import pl.kcieslar.statusosp.screens.firstopen.container.FirstOpenViewModel
 
 @Composable
 fun StepSecondScreen(

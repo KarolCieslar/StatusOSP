@@ -30,7 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 import pl.kcieslar.statusosp.common.compose.PrimaryButton
-import pl.kcieslar.statusosp.screens.firstopen.FirstOpenViewModel
+import pl.kcieslar.statusosp.screens.firstopen.container.FirstOpenViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

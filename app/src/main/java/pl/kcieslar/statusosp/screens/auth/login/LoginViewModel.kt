@@ -2,7 +2,7 @@ package pl.kcieslar.statusosp.screens.auth.login
 
 import androidx.compose.runtime.mutableStateOf
 import dagger.hilt.android.lifecycle.HiltViewModel
-import pl.kcieslar.statusosp.FIRST_OPEN_STEPS
+import pl.kcieslar.statusosp.FIRST_OPEN_STEPS_SCREEN
 import pl.kcieslar.statusosp.LOGIN_SCREEN
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.common.ext.isValidEmail
@@ -53,7 +53,7 @@ class LoginViewModel @Inject constructor(
             changeCallProcessStatus(false)
         }) {
             accountService.login(email, password)
-            openAndPopUp(FIRST_OPEN_STEPS, LOGIN_SCREEN)
+            openAndPopUp(FIRST_OPEN_STEPS_SCREEN, LOGIN_SCREEN)
         }
     }
 

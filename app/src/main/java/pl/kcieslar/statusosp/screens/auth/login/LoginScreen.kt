@@ -9,18 +9,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import pl.kcieslar.statusosp.FIRST_OPEN_STEPS
+import pl.kcieslar.statusosp.FIRST_OPEN_STEPS_SCREEN
 import pl.kcieslar.statusosp.LOGIN_SCREEN
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.RECOVERY_PASSWORD_SCREEN
@@ -44,7 +42,7 @@ fun LoginScreen(
     }
 
     if (viewModel.isUserLogged()) {
-        openAndPopUp(FIRST_OPEN_STEPS, LOGIN_SCREEN)
+        openAndPopUp(FIRST_OPEN_STEPS_SCREEN, LOGIN_SCREEN)
     }
 
     Column(

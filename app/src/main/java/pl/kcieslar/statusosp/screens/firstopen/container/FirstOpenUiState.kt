@@ -1,4 +1,4 @@
-package pl.kcieslar.statusosp.screens.firstopen
+package pl.kcieslar.statusosp.screens.firstopen.container
 
 data class FirstOpenUiState(
     val username: String = "",

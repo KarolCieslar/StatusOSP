@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">StatusOSP</string>
     <string name="generic_error">Wystąpił błąd podczas wykonywania operacji</string>
+    <string name="button_cancel">Anuluj</string>
 
     <!-- Input Errors -->
     <string name="input_error_bad_email">Niepoprawny adres email</string>
@@ -43,4 +44,12 @@
     <string name="password_recovery_screen_description">Wpisz adres email do konta na którym zapomniałeś hasła. Jeśli konto istnieje to za kilka minut otrzymasz wiadomość z linkiem do resetu hasła</string>
     <string name="password_recovery_screen_recovery_button">Odzyskaj hasło</string>
     <string name="password_recovery_screen_back_button">Powrót</string>
+
+    <!-- Create Group Screen -->
+    <string name="create_group_screen_description">Podaj nazwę grupy gotowości oraz opcjonalnie jej opis. Powyższy kod umożliwia dołączenie innych użytkowników do Twojej grupy. Po utworzeniu grupy zostaniesz do niej automatycznie dodany oraz będziesz posiadał uprawnienia administratora, które pozwolą Ci na modyfikowanie jej nazwy, opisu oraz usuwanie członków.</string>
+    <string name="create_group_screen_create_group_button">Stwórz grupę</string>
+    <string name="create_group_name_input_label">Nazwa grupy (jednostki OSP)</string>
+    <string name="create_group_description_input_label">Opis grupy (opcjonalny)</string>
+    <string name="create_group_bad_name">Nazwa grupy musi składać się z conajmniej 6 znaków i nie może być dłuższa niż 40 znaków</string>
+    <string name="create_group_screen_your_group_code">Kod Twojej nowej grupy</string>
 </resources>

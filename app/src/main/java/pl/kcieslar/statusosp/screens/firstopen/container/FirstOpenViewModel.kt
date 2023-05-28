@@ -1,8 +1,10 @@
-package pl.kcieslar.statusosp.screens.firstopen
+package pl.kcieslar.statusosp.screens.firstopen.container
 
 import androidx.compose.runtime.mutableStateOf
 import dagger.hilt.android.lifecycle.HiltViewModel
+import pl.kcieslar.statusosp.common.ext.isValidGroupName
 import pl.kcieslar.statusosp.common.ext.isValidUsername
+import pl.kcieslar.statusosp.common.ext.isValidUsernameInputCheck
 import pl.kcieslar.statusosp.model.service.FirebaseLogService
 import pl.kcieslar.statusosp.model.service.RealtimeDatabaseService
 import pl.kcieslar.statusosp.screens.StatusOSPViewModel
@@ -21,7 +23,9 @@ class FirstOpenViewModel @Inject constructor(
 
 
     fun onUsernameChange(newValue: String) {
-        uiState.value = uiState.value.copy(username = newValue)
+        if (newValue.isValidUsernameInputCheck()) {
+            uiState.value = uiState.value.copy(username = newValue)
+        }
     }
 
     fun onNextButtonClick(onClickAction: () -> Unit) {

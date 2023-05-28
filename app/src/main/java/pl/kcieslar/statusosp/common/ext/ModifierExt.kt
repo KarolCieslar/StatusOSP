@@ -33,10 +33,6 @@ fun Modifier.fieldModifier(): Modifier {
   return this.fillMaxWidth().padding(16.dp, 4.dp)
 }
 
-fun Modifier.toolbarActions(): Modifier {
-  return this.wrapContentSize(Alignment.TopEnd)
-}
-
 fun Modifier.spacer(): Modifier {
   return this.fillMaxWidth().padding(12.dp)
 }

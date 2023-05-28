@@ -1,4 +1,4 @@
-package pl.kcieslar.statusosp.screens.firstopen
+package pl.kcieslar.statusosp.screens.firstopen.container
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi

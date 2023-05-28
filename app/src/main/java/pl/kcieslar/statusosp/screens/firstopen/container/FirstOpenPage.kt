@@ -1,4 +1,4 @@
-package pl.kcieslar.statusosp.screens.firstopen
+package pl.kcieslar.statusosp.screens.firstopen.container
 
 sealed class FirstOpenPage {
     object StepFirst : FirstOpenPage()

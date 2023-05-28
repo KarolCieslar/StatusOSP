@@ -54,9 +54,9 @@ import pl.kcieslar.statusosp.common.snackbar.SnackbarManager
 import pl.kcieslar.statusosp.screens.auth.login.LoginScreen
 import pl.kcieslar.statusosp.screens.auth.password_recovery.RecoveryPasswordScreen
 import pl.kcieslar.statusosp.screens.auth.register.RegisterScreen
-import pl.kcieslar.statusosp.screens.firstopen.FirstOpenScreen
-import pl.kcieslar.statusosp.screens.firstopen.steps.StepSecondScreen
-import pl.kcieslar.statusosp.screens.firstopen.steps.StepThirdScreen
+import pl.kcieslar.statusosp.screens.create_group.CreateGroupScreen
+import pl.kcieslar.statusosp.screens.firstopen.container.FirstOpenScreen
+import pl.kcieslar.statusosp.screens.group_list.GroupListScreen
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -83,7 +83,7 @@ fun StatusOSPApp() {
             ) { innerPaddingModifier ->
                 NavHost(
                     navController = appState.navController,
-                    startDestination = LOGIN_SCREEN,
+                    startDestination = CREATE_GROUP_SCREEN,
                     modifier = Modifier.padding(innerPaddingModifier)
                 ) {
                     statusOspNavGraph(appState)
@@ -139,27 +139,29 @@ fun NavGraphBuilder.statusOspNavGraph(appState: StatusOSPAppState) {
     }
     composable(REGISTER_SCREEN) {
         RegisterScreen(
-            openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) },
+            openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) }
         )
     }
     composable(RECOVERY_PASSWORD_SCREEN) {
         RecoveryPasswordScreen(
-            openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) },
+            openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) }
         )
     }
 
-    // First open screens
-    composable(FIRST_OPEN_STEPS) {
+    // Other screens
+    composable(FIRST_OPEN_STEPS_SCREEN) {
         FirstOpenScreen()
     }
 
-//  composable(
-//    route = "$EDIT_TASK_SCREEN$TASK_ID_ARG",
-//    arguments = listOf(navArgument(TASK_ID) { defaultValue = TASK_DEFAULT_ID })
-//  ) {
-//    EditTaskScreen(
-//      popUpScreen = { appState.popUp() },
-//      taskId = it.arguments?.getString(TASK_ID) ?: TASK_DEFAULT_ID
-//    )
-//  }
+    composable(GROUP_LIST_SCREEN) {
+        GroupListScreen(
+            openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) }
+        )
+    }
+
+    composable(CREATE_GROUP_SCREEN) {
+        CreateGroupScreen(
+            openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) }
+        )
+    }
 }

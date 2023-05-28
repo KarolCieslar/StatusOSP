@@ -39,7 +39,7 @@ fun PrimaryButton(modifier: Modifier = Modifier, text: String, showProgressBar: 
                 strokeWidth = 3.dp
             )
         } else {
-            Text(text = text, fontSize = 16.sp)
+            Text(text = text, fontSize = 19.sp)
         }
     }
 }
@@ -55,7 +55,7 @@ fun SecondaryButton(modifier: Modifier = Modifier, text: String, clickAction: ()
         shape = RoundedCornerShape(5.dp),
         onClick = { clickAction() },
     ) {
-        Text(text = text, color = colorResource(id = R.color.black))
+        Text(text = text, color = colorResource(id = R.color.black), fontSize = 19.sp)
     }
 }
 
