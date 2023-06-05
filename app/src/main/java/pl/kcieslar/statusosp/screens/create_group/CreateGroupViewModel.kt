@@ -2,6 +2,7 @@ package pl.kcieslar.statusosp.screens.create_group
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import pl.kcieslar.statusosp.CREATE_GROUP_SCREEN
@@ -22,6 +23,7 @@ import kotlin.random.Random
 @HiltViewModel
 class CreateGroupViewModel @Inject constructor(
     private val realtimeDatabaseService: RealtimeDatabaseService,
+    private val auth: FirebaseAuth,
     logService: FirebaseLogService
 ) : StatusOSPViewModel(logService) {
     var uiState = mutableStateOf(CreateGroupUiState())
@@ -55,9 +57,9 @@ class CreateGroupViewModel @Inject constructor(
             return
         }
         launchCatching {
-            val group = Group(groupCode, groupName, groupDescription)
+            val group = Group(groupCode, groupName, groupDescription, auth.uid!!)
             if (realtimeDatabaseService.isGroupExist(groupCode)) {
-                // GENERATE NEW GROUP CODE
+                generateNewGroupCode()
                 return@launchCatching
             }
             realtimeDatabaseService.createNewGroup(group)
@@ -65,18 +67,14 @@ class CreateGroupViewModel @Inject constructor(
         }
     }
 
-    fun generateGroupCode() {
-        Log.d("dsaasd", "generateGroupCode generateGroupCode")
+    fun generateNewGroupCode() {
         launchCatching {
             var generatedCode = generateCodeSixDigit()
-            Timber.d("GENERUJE 1szy KOD $generatedCode")
+            uiState.value = uiState.value.copy(groupCode = generatedCode)
             while (realtimeDatabaseService.isGroupExist(generatedCode)) {
-                delay(1000)
                 generatedCode = generateCodeSixDigit()
                 uiState.value = uiState.value.copy(groupCode = generatedCode)
-                Timber.d("GENERUJE KOD $generatedCode")
             }
-            uiState.value = uiState.value.copy(groupCode = "adsdsadas")
         }
     }
 
