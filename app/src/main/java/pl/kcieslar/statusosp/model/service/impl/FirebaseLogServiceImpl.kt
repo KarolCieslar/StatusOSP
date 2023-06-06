@@ -12,6 +12,6 @@ class FirebaseLogServiceImpl @Inject constructor() : FirebaseLogService {
         Firebase.crashlytics.recordException(throwable)
 
     override fun printStackTrace(throwable: Throwable) {
-        Log.e("Error:", throwable.printStackTrace().toString())
+        Timber.e(throwable.printStackTrace().toString())
     }
 }

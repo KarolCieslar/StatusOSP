@@ -52,4 +52,7 @@
     <string name="create_group_description_input_label">Opis grupy (opcjonalny)</string>
     <string name="create_group_bad_name">Nazwa grupy musi składać się z conajmniej 6 znaków i nie może być dłuższa niż 40 znaków</string>
     <string name="create_group_screen_your_group_code">Kod Twojej nowej grupy</string>
+
+    <!-- Group List Screen -->
+    <string name="group_list_screen_toolbar_label">Lista Twoich grup</string>
 </resources>

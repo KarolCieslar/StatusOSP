@@ -9,6 +9,7 @@ const val RECOVERY_PASSWORD_SCREEN = "RecoveryPasswordScreen"
 const val FIRST_OPEN_STEPS_SCREEN = "FirstOpenStepsScreen"
 const val CREATE_GROUP_SCREEN = "CreateGroupScreen"
 const val GROUP_LIST_SCREEN = "GroupListScreen"
+const val SETTINGS_SCREEN = "SettingsScreen"
 
 // Arguments
 const val EMAIL_VALUE = "emailValue"

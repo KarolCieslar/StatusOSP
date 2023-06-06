@@ -57,6 +57,7 @@ import pl.kcieslar.statusosp.screens.auth.register.RegisterScreen
 import pl.kcieslar.statusosp.screens.create_group.CreateGroupScreen
 import pl.kcieslar.statusosp.screens.firstopen.container.FirstOpenScreen
 import pl.kcieslar.statusosp.screens.group_list.GroupListScreen
+import pl.kcieslar.statusosp.screens.settings.SettingsScreen
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -83,7 +84,7 @@ fun StatusOSPApp() {
             ) { innerPaddingModifier ->
                 NavHost(
                     navController = appState.navController,
-                    startDestination = CREATE_GROUP_SCREEN,
+                    startDestination = GROUP_LIST_SCREEN,
                     modifier = Modifier.padding(innerPaddingModifier)
                 ) {
                     statusOspNavGraph(appState)
@@ -155,7 +156,13 @@ fun NavGraphBuilder.statusOspNavGraph(appState: StatusOSPAppState) {
 
     composable(GROUP_LIST_SCREEN) {
         GroupListScreen(
-            openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) }
+            openScreen = { route -> appState.navigate(route) }
+        )
+    }
+
+    composable(SETTINGS_SCREEN) {
+        SettingsScreen(
+            openScreen = { route -> appState.navigate(route) }
         )
     }
 

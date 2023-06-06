@@ -1,7 +1,8 @@
 package pl.kcieslar.statusosp.screens.group_list
 
+import pl.kcieslar.statusosp.model.objects.Group
+
 data class GroupListUiState(
-    val groupName: String = "",
-    val groupDescription: String = "",
-    val isError: Boolean = false
+    val groupList: List<Group> = listOf(),
+    val exception: Exception? = null
 )

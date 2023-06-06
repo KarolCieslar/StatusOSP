@@ -1,4 +1,4 @@
-package pl.kcieslar.statusosp.screens.group_list
+package pl.kcieslar.statusosp.screens.settings
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
@@ -13,19 +13,10 @@ import pl.kcieslar.statusosp.screens.StatusOSPViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class GroupListViewModel @Inject constructor(
+class SettingsViewModel @Inject constructor(
     private val realtimeDatabaseService: RealtimeDatabaseService,
     logService: FirebaseLogService
 ) : StatusOSPViewModel(logService) {
-    var uiState = mutableStateOf(GroupListUiState())
+    var uiState = mutableStateOf(eSettingsUiState())
         private set
-
-    private val groupList
-        get() = uiState.value.groupList
-
-    fun getUserGroups() {
-        launchCatching {
-            uiState.value = uiState.value.copy(groupList = realtimeDatabaseService.getUserGroups())
-        }
-    }
 }

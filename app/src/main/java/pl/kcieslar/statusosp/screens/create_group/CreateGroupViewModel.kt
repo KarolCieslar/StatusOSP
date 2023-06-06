@@ -1,10 +1,8 @@
 package pl.kcieslar.statusosp.screens.create_group
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import pl.kcieslar.statusosp.CREATE_GROUP_SCREEN
 import pl.kcieslar.statusosp.GROUP_LIST_SCREEN
 import pl.kcieslar.statusosp.R
@@ -16,7 +14,6 @@ import pl.kcieslar.statusosp.model.objects.Group
 import pl.kcieslar.statusosp.model.service.FirebaseLogService
 import pl.kcieslar.statusosp.model.service.RealtimeDatabaseService
 import pl.kcieslar.statusosp.screens.StatusOSPViewModel
-import timber.log.Timber
 import javax.inject.Inject
 import kotlin.random.Random
 
