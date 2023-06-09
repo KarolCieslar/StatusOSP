@@ -2,22 +2,23 @@ package pl.kcieslar.statusosp.model.service.impl
 
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.getValue
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import pl.kcieslar.statusosp.model.objects.Group
-import pl.kcieslar.statusosp.model.objects.GroupUser
-import pl.kcieslar.statusosp.model.objects.GroupUserStatus
+import pl.kcieslar.statusosp.model.objects.UserStatus
 import pl.kcieslar.statusosp.model.service.RealtimeDatabaseService
-import pl.kcieslar.statusosp.model.service.responses.UserGroupsResponse
-import pl.kcieslar.statusosp.screens.group_list.GroupListUiState
+import pl.kcieslar.statusosp.model.service.responses.GroupResponse
 import timber.log.Timber
 import java.lang.IllegalArgumentException
 import javax.inject.Inject
@@ -60,6 +61,49 @@ class RealtimeDatabaseServiceImpl @Inject constructor(
             }
         }
         return groupList
+    }
+
+    override suspend fun setUserStatus(userStatus: UserStatus) {
+        // TODO
+    }
+
+    override fun getGroupByCode(code: String): Flow<GroupResponse> {
+        val response = GroupResponse()
+        return callbackFlow {
+            val listener = groupsRef.orderByChild("code").equalTo(code).addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    handleSnapshotChange(snapshot)
+                }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    handleSnapshotChange(snapshot)
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                    handleSnapshotChange(snapshot)
+                }
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    handleSnapshotChange(snapshot)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    response.exception = Exception(error.message)
+                    cancel()
+                }
+
+                private fun handleSnapshotChange(snapshot: DataSnapshot) {
+                    try {
+                        response.group = snapshot.getValue(Group::class.java)
+                        trySend(response)
+                    } catch (exception: Exception) {
+                        response.exception = exception
+                        trySend(response)
+                    }
+                }
+            })
+            awaitClose { groupsRef.removeEventListener(listener) }
+        }
     }
 
 //    override fun getGroupData(groupKeys: List<String>): Flow<UserGroupsResponse?> {

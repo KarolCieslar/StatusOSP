@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
@@ -29,13 +30,17 @@ fun StepSecondScreen(
     onButtonClick: () -> Unit,
     viewModel: FirstOpenViewModel = hiltViewModel()
 ) {
-    Column(
+    ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Column {
+        val (imageAndText, buttons) = createRefs()
+        Column(
+            modifier = Modifier.constrainAs(imageAndText) {
+                top.linkTo(parent.top)
+            }
+        ) {
             Row(
                 modifier = Modifier.padding(horizontal = 5.dp),
                 horizontalArrangement = Arrangement.spacedBy(26.dp),
@@ -55,7 +60,11 @@ fun StepSecondScreen(
             }
         }
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .constrainAs(buttons) {
+                    bottom.linkTo(parent.bottom)
+                },
             horizontalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             SecondaryButton(modifier = Modifier.weight(1f), text = stringResource(R.string.step_second_screen_decline_button)) {

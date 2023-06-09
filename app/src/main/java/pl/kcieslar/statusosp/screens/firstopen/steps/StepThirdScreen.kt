@@ -34,6 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 import pl.kcieslar.statusosp.common.compose.PrimaryButton
@@ -42,11 +43,17 @@ import pl.kcieslar.statusosp.common.compose.StepView
 
 @Composable
 fun StepThirdScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
-        verticalArrangement = Arrangement.SpaceBetween
+    ConstraintLayout(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
     ) {
-        Column {
+        val (imageAndText, bottomFieldAndButtons) = createRefs()
+        Column(
+            modifier = Modifier.constrainAs(imageAndText) {
+                top.linkTo(parent.top)
+            }
+        ) {
             Row(
                 modifier = Modifier.padding(horizontal = 5.dp),
                 horizontalArrangement = Arrangement.spacedBy(26.dp),
@@ -66,6 +73,9 @@ fun StepThirdScreen() {
             }
         }
         Column(
+            modifier = Modifier.constrainAs(bottomFieldAndButtons) {
+                bottom.linkTo(parent.bottom)
+            },
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             EnterGroupCodeFields()
@@ -73,11 +83,11 @@ fun StepThirdScreen() {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                PrimaryButton(modifier = Modifier.weight(1.2f), text = stringResource(R.string.step_third_screen_join_group_button)) {
+                PrimaryButton(modifier = Modifier.weight(1f), text = stringResource(R.string.step_third_screen_join_group_button)) {
                     // TODO: Start connect user to group
                 }
-                Text(text = stringResource(R.string.step_third_screen_or_text), textAlign = TextAlign.Center, modifier = Modifier.weight(0.3f))
-                SecondaryButton(modifier = Modifier.weight(0.8f), text = stringResource(R.string.step_third_screen_create_group_button)) {
+                Text(text = stringResource(R.string.step_third_screen_or_text), textAlign = TextAlign.Center, modifier = Modifier.weight(0.25f))
+                SecondaryButton(modifier = Modifier.weight(1f), text = stringResource(R.string.step_third_screen_create_group_button)) {
                     // TODO: Send user to create new group screen
                 }
             }

@@ -1,4 +1,4 @@
-package pl.kcieslar.statusosp.screens.create_group
+package pl.kcieslar.statusosp.screens.group.create
 
 data class CreateGroupUiState(
     val groupCode: String = "",

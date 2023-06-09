@@ -1,4 +1,4 @@
-package pl.kcieslar.statusosp.screens.create_group
+package pl.kcieslar.statusosp.screens.group.create
 
 import androidx.compose.runtime.mutableStateOf
 import com.google.firebase.auth.FirebaseAuth

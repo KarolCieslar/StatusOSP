@@ -4,14 +4,14 @@ data class Group(
     val code: String = "",
     val name: String = "",
     val description: String = "",
-    val adminUID: String = "",
-    val users: Map<String, GroupUser> = java.util.HashMap()
+    val adminKey: String = "",
+    val users: Map<String, User> = mapOf()
 ) {
-    fun getUserList(): List<GroupUser> {
+    fun getUserList(): List<User> {
         return this.users.map { it.value }
     }
 
-    fun getUsersWithReadyStatus(): List<GroupUser> {
-        return this.users.map { it.value }.filter { it.status ==  GroupUserStatus.READY}
+    fun getUsersWithReadyStatus(): List<User> {
+        return this.users.map { it.value }.filter { it.status ==  UserStatus.READY}
     }
 }

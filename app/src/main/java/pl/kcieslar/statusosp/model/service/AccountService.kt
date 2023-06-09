@@ -16,16 +16,9 @@ limitations under the License.
 
 package pl.kcieslar.statusosp.model.service
 
-import kotlinx.coroutines.flow.Flow
-import pl.kcieslar.statusosp.model.objects.LoggedUser
-
 interface AccountService {
-  val currentUserId: String
-  val hasUser: Boolean
-
-  val currentUser: Flow<LoggedUser>
-
   suspend fun login(email: String, password: String)
+  suspend fun isUserDoneFirstSetup() : Boolean
   suspend fun sendRecoveryEmail(email: String)
   suspend fun register(email: String, password: String)
   suspend fun deleteAccount()

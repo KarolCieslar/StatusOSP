@@ -1,8 +1,8 @@
-package pl.kcieslar.statusosp.screens.group_list
+package pl.kcieslar.statusosp.screens.settings
 
 import pl.kcieslar.statusosp.model.objects.Group
 
-data class GroupListUiState(
+data class SettingsUiState(
     val groupList: List<Group> = listOf(),
     val exception: Exception? = null
 )

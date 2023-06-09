@@ -52,29 +52,29 @@ import androidx.compose.ui.unit.sp
 import pl.kcieslar.statusosp.GROUP_LIST_SCREEN
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.SETTINGS_SCREEN
-import pl.kcieslar.statusosp.model.objects.GroupUserStatus
+import pl.kcieslar.statusosp.model.objects.UserStatus
+import pl.kcieslar.statusosp.rememberAppState
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 
 @Composable
 fun BottomNavBar(
     modifier: Modifier = Modifier,
-    currentScreen: String = GROUP_LIST_SCREEN,
-    currentStatus: GroupUserStatus = GroupUserStatus.BUSY,
+    currentStatus: UserStatus = UserStatus.BUSY,
     leftItemAction: () -> Unit = {},
     rightItemAction: () -> Unit = {},
     centerItemAction: () -> Unit = {}
 ) {
 
+    val appState = rememberAppState()
+
     val centerItemColor = when (currentStatus) {
-        GroupUserStatus.READY -> R.color.green
-        GroupUserStatus.BUSY -> R.color.red
-        GroupUserStatus.BUSY_READY -> R.color.orange
+        UserStatus.READY -> R.color.green
+        UserStatus.BUSY -> R.color.red
     }
 
     val centerItemColorBorder = when (currentStatus) {
-        GroupUserStatus.READY -> R.color.darkGreen
-        GroupUserStatus.BUSY -> R.color.darkRed
-        GroupUserStatus.BUSY_READY -> R.color.darkOragne
+        UserStatus.READY -> R.color.darkGreen
+        UserStatus.BUSY -> R.color.darkRed
     }
 
     Box(
@@ -95,7 +95,7 @@ fun BottomNavBar(
             BottomNavItem(
                 "Twoje Grupy",
                 Icons.Default.List,
-                currentScreen == GROUP_LIST_SCREEN
+                appState.navController.currentBackStackEntry?.destination?.route == GROUP_LIST_SCREEN
             ) {
                 leftItemAction()
             }
@@ -105,7 +105,7 @@ fun BottomNavBar(
             BottomNavItem(
                 "Ustawienia",
                 Icons.Default.Settings,
-                currentScreen == SETTINGS_SCREEN
+                appState.navController.currentBackStackEntry?.destination?.route == SETTINGS_SCREEN
             )
             {
                 rightItemAction()

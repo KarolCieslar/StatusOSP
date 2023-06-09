@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -50,7 +51,7 @@ fun SettingsScreen(
             modifier = Modifier.constrainAs(topAppBar) {
                 top.linkTo(parent.top)
             },
-            title = R.string.group_list_screen_toolbar_label
+            title = stringResource(id = R.string.group_list_screen_toolbar_label)
         )
         Text(text = "SETTINGS SCREEN")
         BottomNavBar(

@@ -57,5 +57,5 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun isUserLogged() = accountService.hasUser
+    fun isUserLogged() = true // TODO: adsads
 }

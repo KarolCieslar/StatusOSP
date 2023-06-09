@@ -54,10 +54,12 @@ import pl.kcieslar.statusosp.common.snackbar.SnackbarManager
 import pl.kcieslar.statusosp.screens.auth.login.LoginScreen
 import pl.kcieslar.statusosp.screens.auth.password_recovery.RecoveryPasswordScreen
 import pl.kcieslar.statusosp.screens.auth.register.RegisterScreen
-import pl.kcieslar.statusosp.screens.create_group.CreateGroupScreen
+import pl.kcieslar.statusosp.screens.group.create.CreateGroupScreen
 import pl.kcieslar.statusosp.screens.firstopen.container.FirstOpenScreen
-import pl.kcieslar.statusosp.screens.group_list.GroupListScreen
+import pl.kcieslar.statusosp.screens.group.details.GroupDetailsScreen
+import pl.kcieslar.statusosp.screens.group.list.GroupListScreen
 import pl.kcieslar.statusosp.screens.settings.SettingsScreen
+import pl.kcieslar.statusosp.screens.splash.SplashScreen
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -84,7 +86,7 @@ fun StatusOSPApp() {
             ) { innerPaddingModifier ->
                 NavHost(
                     navController = appState.navController,
-                    startDestination = GROUP_LIST_SCREEN,
+                    startDestination = SPLASH_SCREEN,
                     modifier = Modifier.padding(innerPaddingModifier)
                 ) {
                     statusOspNavGraph(appState)
@@ -127,6 +129,12 @@ fun resources(): Resources {
 
 fun NavGraphBuilder.statusOspNavGraph(appState: StatusOSPAppState) {
 
+    composable(SPLASH_SCREEN) {
+        SplashScreen(
+            openAndClear = { route -> appState.clearAndNavigate(route) },
+        )
+    }
+
     // Auth screens
     composable(
         route = "$LOGIN_SCREEN$EMAIL_VALUE_ARG",
@@ -156,7 +164,17 @@ fun NavGraphBuilder.statusOspNavGraph(appState: StatusOSPAppState) {
 
     composable(GROUP_LIST_SCREEN) {
         GroupListScreen(
-            openScreen = { route -> appState.navigate(route) }
+            openScreen = { route -> appState.navigate(route) },
+        )
+    }
+
+    composable(
+        route = "$GROUP_DETAILS_SCREEN$GROUP_VALUE_ARG",
+        arguments = listOf(navArgument(GROUP_VALUE) { defaultValue = "" })
+    ) {
+        GroupDetailsScreen(
+            openAndClear = { route -> appState.clearAndNavigate(route) },
+            groupCode = it.arguments?.getString(GROUP_VALUE) ?: ""
         )
     }
 

@@ -1,4 +1,4 @@
-package pl.kcieslar.statusosp.screens.create_group
+package pl.kcieslar.statusosp.screens.group.create
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -48,7 +48,7 @@ fun CreateGroupScreen(
         modifier = Modifier.fillMaxSize()
     ) {
         CustomTopAppBar(
-            title = R.string.create_group_screen_create_group_button,
+            title = stringResource(id = R.string.create_group_screen_create_group_button),
             leftIcon = Icons.Default.Close,
             leftIconAction = { openAndPopUp(GROUP_LIST_SCREEN, CREATE_GROUP_SCREEN) }
         )

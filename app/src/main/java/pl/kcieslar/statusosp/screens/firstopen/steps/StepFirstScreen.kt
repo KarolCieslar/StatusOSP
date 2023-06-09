@@ -19,13 +19,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import pl.kcieslar.statusosp.R
 import pl.kcieslar.statusosp.ui.theme.StatusOSPTheme
@@ -40,13 +44,18 @@ fun StepFirstScreen(
 ) {
     val uiState by viewModel.uiState
 
-    Column(
+    ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Column {
+        val (imageAndText, fieldAndButton) = createRefs()
+
+        Column(
+            modifier = Modifier.constrainAs(imageAndText) {
+                top.linkTo(parent.top)
+            }
+        ) {
             Row(
                 modifier = Modifier.padding(horizontal = 5.dp),
                 horizontalArrangement = Arrangement.spacedBy(26.dp),
@@ -65,7 +74,11 @@ fun StepFirstScreen(
                 )
             }
         }
-        Column {
+        Column(
+            modifier = Modifier.constrainAs(fieldAndButton) {
+                bottom.linkTo(parent.bottom)
+            }
+        ) {
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth(),

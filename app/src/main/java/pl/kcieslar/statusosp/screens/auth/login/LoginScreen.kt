@@ -41,10 +41,6 @@ fun LoginScreen(
         viewModel.onEmailChange(emailValue)
     }
 
-    if (viewModel.isUserLogged()) {
-        openAndPopUp(FIRST_OPEN_STEPS_SCREEN, LOGIN_SCREEN)
-    }
-
     Column(
         modifier = Modifier
             .fillMaxSize()

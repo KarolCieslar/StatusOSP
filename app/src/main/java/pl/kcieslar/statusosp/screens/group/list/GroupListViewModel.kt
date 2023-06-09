@@ -1,31 +1,26 @@
-package pl.kcieslar.statusosp.screens.group_list
+package pl.kcieslar.statusosp.screens.group.list
 
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
-import pl.kcieslar.statusosp.common.ext.isValidUsername
-import pl.kcieslar.statusosp.model.objects.Group
 import pl.kcieslar.statusosp.model.service.FirebaseLogService
 import pl.kcieslar.statusosp.model.service.RealtimeDatabaseService
+import pl.kcieslar.statusosp.model.service.enums.DataStatus
 import pl.kcieslar.statusosp.screens.StatusOSPViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class GroupListViewModel @Inject constructor(
     private val realtimeDatabaseService: RealtimeDatabaseService,
+    private val auth: FirebaseAuth,
     logService: FirebaseLogService
 ) : StatusOSPViewModel(logService) {
-    var uiState = mutableStateOf(GroupListUiState())
+    var uiState = mutableStateOf(GroupListUiState(auth))
         private set
-
-    private val groupList
-        get() = uiState.value.groupList
 
     fun getUserGroups() {
         launchCatching {
-            uiState.value = uiState.value.copy(groupList = realtimeDatabaseService.getUserGroups())
+            uiState.value = uiState.value.copy(groupList = realtimeDatabaseService.getUserGroups(), dataStatus = DataStatus.LOADED)
         }
     }
 }
