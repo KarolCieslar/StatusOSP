@@ -1,3 +1,6 @@
+
+## [Aplikacja w trakcie tworzenia przy wykorzystania Jetpack Compose]
+
 ## StatusOSP - Gotowość Bojowa
 
 Link do aplikacji w Sklepie Play: [wkrótce dostępne]
